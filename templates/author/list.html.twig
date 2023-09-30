@@ -1,0 +1,36 @@
+<table>
+{% if authors is empty %}
+<tr>
+    <td>no authors</td>
+</tr>
+{% else %}
+<tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Picture</th>
+    <th>Email</th>
+    <th>Number of books</th>
+</tr>
+{% for author in authors %}
+<tr>
+    <td>{{ author.id }}</td>
+    <td>{{ author.username|upper }}</td>
+    <td><img src={{ author.picture }}></td>
+    <td>{{ author.email }}</td>
+    <td>{{ author.nb_books }}</td>
+    <td><a href="{{path('authorDetails',{'id':author.id})}}">Details</a></td>
+</tr>
+{% endfor %}
+<tr>
+    <td>Total number of authors: {{ authors|length }}</td>
+</tr>
+{% set sum = 0%}
+{% for author in authors %}
+    {% set sum = sum + author.nb_books %}
+{% endfor %}
+<tr>
+    <td>Total number of books: {{ sum }}</td>
+</tr>
+{% endif %}
+
+</table>

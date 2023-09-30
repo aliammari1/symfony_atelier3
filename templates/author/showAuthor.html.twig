@@ -1,0 +1,27 @@
+<table>
+{% if authors is empty %}
+<tr>
+    <td>no authors</td>
+</tr>
+{% else %}
+<tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Picture</th>
+    <th>Email</th>
+    <th>Number of books</th>
+</tr>
+{% for author in authors %}
+{% if author.id == id %}
+<tr>
+    <td>{{ author.id }}</td>
+    <td>{{ author.username|upper }}</td>
+    <td><img src={{ author.picture }}></td>
+    <td>{{ author.email }}</td>
+    <td>{{ author.nb_books }}</td>
+</tr>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+</table>
